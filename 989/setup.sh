@@ -33,11 +33,6 @@ ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime;
 clear
 echo "
 
-# initialisasi var
-export DEBIAN_FRONTEND=noninteractive
-OS=`uname -m`;
-#MYIP=$(wget -qO- ipv4.icanhazip.com);
-
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
