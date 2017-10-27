@@ -1,34 +1,22 @@
 #!/bin/bash
-
-if [[ $USER != "root" ]]; then
-	echo "Maaf, Anda harus menjalankan ini sebagai root"
-	exit
-fi
-
 clear
-# cek ip
-vps="vpn989";
+
+# get the VPS IP
+#ip=`ifconfig venet0:0 | grep 'inet addr' | awk {'print $2'} | sed s/.*://`
 MYIP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
-wget -q -O 989 http://vpn989.com/server.txt
-if ! grep -w -q $MYIP 989; then
-	echo "Maaf, hanya IP yang terdaftar yang bisa menggunakan script ini!"
-	if [[ $vps = "vpn989" ]]; then
-echo -e "\e[33m Contact: Chandra989 (+60143749392)"
-echo -e "\e[34m Price RM20 / IP SerVer"
-echo -e "\e[35m installation Script= OpenVpn , Ssh , DropBear , OcsPanel , Easy Menu"
-echo -e "\e[31m                |================================|"
-echo -e "\e[32m                |    AUTO SCRIPT BY VPN989       |"
-echo -e "\e[33m                |   WHATSAPP : 0143749392        |"
-echo -e "\e[34m                |  TELEGRAM  : @Chandra989       |"
-echo -e "\e[35m                |    GROUP   : @Vpn989Group      |"
-echo -e "\e[33m                |_______________________________ |"
-echo -e "\e[31m                |       COPYRIGHT BY VPN989      |"
-echo -e "\e[35m                |================================|"
-	fi
-	rm /root/989
-	rm -f /root/989
-	exit
-fi 
+#MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
+if [ "$MYIP" = "" ]; then
+	MYIP=$(wget -qO- ipv4.icanhazip.com)
+fi
+#myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+
+flag=0
+
+echo
+
+	#MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
+	#if [ "$MYIP" = "" ]; then
+		#MYIP=$(wget -qO- ipv4.icanhazip.com)
 
 # initialisasi var
 export DEBIAN_FRONTEND=noninteractive
@@ -47,7 +35,7 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 ether=`ifconfig | cut -c 1-8 | sort | uniq -u | grep venet0 | grep -v venet0:`
 if [[ $ether = "" ]]; then
         ether=eth0
-fi
+Cd
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
