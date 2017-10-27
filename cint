@@ -1,5 +1,12 @@
 #!/bin/bash
-
+# ******************************************
+# Program: Apache07 Servis Apache07
+# Website: Apache07.tk
+# Developer: samrey steven
+# Nickname: Apache07
+# Date: 22-07-2016
+# Last Updated: 22-10-2017
+# ******************************************
 # MULA SETUP
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
@@ -16,16 +23,14 @@ echo "TUN is not available"
 exit 3
 fi
 echo "
-#vps="zvur";
-vps="aneka";
-
-#if [[ $vps = "zvur" ]]; then
-	#source="http://"
-#else
-	source="https://raw.githubusercontent.com/elangoverdosis2/cinta"
-#fi
-
-fi
+AUTOSCRIPT BY OrangKuatSabahanTerkini
+AMBIL PERHATIAN !!!"
+clear
+echo "MULA SETUP"
+clear
+echo "SET TIMEZONE KUALA LUMPUT GMT +8"
+ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime;
+clear
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
@@ -39,15 +44,13 @@ sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 # install wget and curl
 apt-get update;apt-get -y install wget curl;
 apt-get install gem
-# set time GMT +7
-ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
 
 # set repo
-wget -O /etc/apt/sources.list $source/debian7/sources.list.debian7
+wget -O /etc/apt/sources.list https://raw.githubusercontent.com/ruzaidie/cinta/debian7/sources.list.debian7
 wget http://www.dotdeb.org/dotdeb.gpg
 wget http://www.webmin.com/jcameron-key.asc
 cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
@@ -88,7 +91,7 @@ service vnstat restart
 
 # install screenfetch
 cd
-#wget $source/debian7/screenfetch-dev
+#wget https://raw.githubusercontent.com/ruzaidie/cinta/debian7/debian7/screenfetch-dev
 #mv screenfetch-dev /usr/bin/screenfetch
 #chmod +x /usr/bin/screenfetch
 #echo "clear" >> .profile
@@ -104,13 +107,13 @@ sudo gem install lolcat
 # text warna
 cd
 rm -rf /root/.bashrc
-wget -O /root/.bashrc $source/debian7/.bashrc
+wget -O /root/.bashrc https://raw.githubusercontent.com/ruzaidie/cinta/debian7/.bashrc
 
 # install webserver
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf $source/debian7/nginx.conf
+wget -O /etc/nginx/nginx.conf https://raw.githubusercontent.com/ruzaidie/cinta/debian7/nginx.conf
 mkdir -p /home/vps/public_html
 echo "<pre>Modified by elang overdosis n' yusuf ardiansyah</pre>" > /home/vps/public_html/index.html
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
@@ -129,9 +132,9 @@ service nginx restart
 cd
 
 # install badvpn
-#wget -O /usr/bin/badvpn-udpgw $source/debian7/badvpn-udpgw
+#wget -O /usr/bin/badvpn-udpgw https://raw.githubusercontent.com/ruzaidie/cinta/debian7/badvpn-udpgw
 #if [[ $OS == "x86_64" ]]; then
-#wget -O /usr/bin/badvpn-udpgw $source/debian7/badvpn-udpgw64
+#wget -O /usr/bin/badvpn-udpgw https://raw.githubusercontent.com/ruzaidie/cinta/debian7/badvpn-udpgw64
 #fi
 #sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 #chmod +x /usr/bin/badvpn-udpgw
@@ -140,8 +143,8 @@ cd
 
 # install mrtg
 #apt-get update;apt-get -y install snmpd;
-#wget -O /etc/snmp/snmpd.conf $source/debian7/snmpd.conf
-#wget -O /root/mrtg-mem.sh $source/debian7/mrtg-mem.sh
+#wget -O /etc/snmp/snmpd.conf https://raw.githubusercontent.com/ruzaidie/cinta/debian7/snmpd.conf
+#wget -O /root/mrtg-mem.sh https://raw.githubusercontent.com/ruzaidie/cinta/debian7/mrtg-mem.sh
 #chmod +x /root/mrtg-mem.sh
 #cd /etc/snmp/
 #sed -i 's/TRAPDRUN=no/TRAPDRUN=yes/g' /etc/default/snmpd
@@ -188,7 +191,7 @@ sed -i 's/DROPBEAR_BANNER=""/DROPBEAR_BANNER="bannerssh"/g' /etc/default/dropbea
 service ssh restart
 service dropbear restart
 # bannerssh
-wget $source/debian7/bannerssh
+wget https://raw.githubusercontent.com/ruzaidie/cinta/debian7/bannerssh
 mv ./bannerssh /bannerssh
 chmod 0644 /bannerssh
 service dropbear restart
@@ -231,9 +234,9 @@ sed -i '/SixXS IPv6/d' config.php
 cd
 
 #if [[ $ether = "eth0" ]]; then
-#	wget -O /etc/iptables.conf $source/Debian7/iptables.up.rules.eth0
+#	wget -O /etc/iptables.conf https://raw.githubusercontent.com/ruzaidie/cinta/debian7/iptables.up.rules.eth0
 #else
-#	wget -O /etc/iptables.conf $source/Debian7/iptables.up.rules.venet0
+#	wget -O /etc/iptables.conf https://raw.githubusercontent.com/ruzaidie/cinta/debian7/iptables.up.rules.venet0
 #fi
 
 #sed -i $MYIP2 /etc/iptables.conf;
@@ -267,14 +270,14 @@ apt-get update;apt-get -y install fail2ban;service fail2ban restart
 
 # install squid3
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf $source/debian7/squid3.conf
+wget -O /etc/squid3/squid.conf https://raw.githubusercontent.com/ruzaidie/cinta/debian7/squid3.conf
 sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
 # install webmin
 cd
 #wget -O webmin-current.deb http://prdownloads.sourceforge.net/webadmin/webmin_1.760_all.deb
-wget -O webmin-current.deb $source/debian7/webmin-current.deb
+wget -O webmin-current.deb https://github.com/ruzaidie/cinta/blob/debian7/webmin-current.deb?raw=true
 dpkg -i --force-all webmin-current.deb
 apt-get -y -f install;
 #sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
@@ -284,43 +287,43 @@ service webmin restart
 service vnstat restart
 
 # install pptp vpn
-wget -O /root/pptp.sh $source/debian7/pptp.sh
+wget -O /root/pptp.sh https://raw.githubusercontent.com/ruzaidie/cinta/debian7/pptp.sh
 chmod +x pptp.sh
 ./pptp.sh
 
 # download script
 cd
-wget -O /usr/bin/benchmark $source/debian7/benchmark.sh
-wget -O /usr/bin/speedtest $source/debian7/speedtest_cli.py
-wget -O /usr/bin/ps-mem $source/debian7/ps_mem.py
-wget -O /usr/bin/dropmon $source/debian7/dropmon.sh
-wget -O /usr/bin/menu $source/debian7/menu.sh
-wget -O /usr/bin/user-active-list $source/debian7/user-active-list.sh
-wget -O /usr/bin/user-add $source/debian7/user-add.sh
-wget -O /usr/bin/user-add-pptp $source/debian7/user-add-pptp.sh
-wget -O /usr/bin/user-del $source/debian7/user-del.sh
-wget -O /usr/bin/disable-user-expire $source/debian7/disable-user-expire.sh
-wget -O /usr/bin/delete-user-expire $source/debian7/delete-user-expire.sh
-wget -O /usr/bin/banned-user $source/debian7/banned-user.sh
-wget -O /usr/bin/unbanned-user $source/debian7/unbanned-user.sh
-wget -O /usr/bin/user-expire-list $source/debian7/user-expire-list.sh
-wget -O /usr/bin/user-gen $source/debian7/user-gen.sh
-wget -O /usr/bin/userlimit.sh $source/debian7/userlimit.sh
-#wget -O /usr/bin/userlimitssh.sh $source/debian7/userlimitssh.sh
-wget -O /usr/bin/user-list $source/debian7/user-list.sh
-wget -O /usr/bin/user-login $source/debian7/user-login.sh
-wget -O /usr/bin/user-pass $source/debian7/user-pass.sh
-wget -O /usr/bin/user-renew $source/debian7/user-renew.sh
-wget -O /usr/bin/clearcache.sh $source/debian7/clearcache.sh
-wget -O /usr/bin/bannermenu $source/debian7/bannermenu
-wget -O /usr/bin/menu-update-script-vps.sh $source/debian7/menu-update-script-vps.sh
-wget -O /usr/bin/vpnmon $source/debian7/vpnmon
+wget -O /usr/bin/benchmark https://raw.githubusercontent.com/ruzaidie/cinta/debian7/benchmark.sh
+wget -O /usr/bin/speedtest https://raw.githubusercontent.com/ruzaidie/cinta/debian7/speedtest_cli.py
+wget -O /usr/bin/ps-mem https://raw.githubusercontent.com/ruzaidie/cinta/debian7/ps_mem.py
+wget -O /usr/bin/dropmon https://raw.githubusercontent.com/ruzaidie/cinta/debian7/dropmon.sh
+wget -O /usr/bin/menu https://raw.githubusercontent.com/ruzaidie/cinta/debian7/menu.sh
+wget -O /usr/bin/user-active-list https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-active-list.sh
+wget -O /usr/bin/user-add https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-add.sh
+wget -O /usr/bin/user-add-pptp https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-add-pptp.sh
+wget -O /usr/bin/user-del https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-del.sh
+wget -O /usr/bin/disable-user-expire https://raw.githubusercontent.com/ruzaidie/cinta/debian7/disable-user-expire.sh
+wget -O /usr/bin/delete-user-expire https://raw.githubusercontent.com/ruzaidie/cinta/debian7/delete-user-expire.sh
+wget -O /usr/bin/banned-user https://raw.githubusercontent.com/ruzaidie/cinta/debian7/banned-user.sh
+wget -O /usr/bin/unbanned-user https://raw.githubusercontent.com/ruzaidie/cinta/debian7/unbanned-user.sh
+wget -O /usr/bin/user-expire-list https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-expire-list.sh
+wget -O /usr/bin/user-gen https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-gen.sh
+wget -O /usr/bin/userlimit.sh https://raw.githubusercontent.com/ruzaidie/cinta/debian7/userlimit.sh
+#wget -O /usr/bin/userlimitssh.sh https://raw.githubusercontent.com/ruzaidie/cinta/debian7/userlimitssh.sh
+wget -O /usr/bin/user-list https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-list.sh
+wget -O /usr/bin/user-login https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-login.sh
+wget -O /usr/bin/user-pass https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-pass.sh
+wget -O /usr/bin/user-renew https://raw.githubusercontent.com/ruzaidie/cinta/debian7/user-renew.sh
+wget -O /usr/bin/clearcache.sh https://raw.githubusercontent.com/ruzaidie/cinta/debian7/clearcache.sh
+wget -O /usr/bin/bannermenu https://raw.githubusercontent.com/ruzaidie/cinta/debian7/bannermenu
+wget -O /usr/bin/menu-update-script-vps.sh https://raw.githubusercontent.com/ruzaidie/cinta/debian7/menu-update-script-vps.sh
+wget -O /usr/bin/vpnmon https://raw.githubusercontent.com/ruzaidie/cinta/debian7/vpnmon
 cd
 #rm -rf /etc/cron.weekly/
 #rm -rf /etc/cron.hourly/
 #rm -rf /etc/cron.monthly/
 #rm -rf /etc/cron.daily/
-#wget -O /root/passwd $source/debian7/passwd.sh
+#wget -O /root/passwd https://raw.githubusercontent.com/ruzaidie/cinta/debian7/passwd.sh
 #chmod +x /root/passwd
 echo "01 23 * * * root /root/passwd" > /etc/cron.d/passwd
 
@@ -358,7 +361,7 @@ chmod +x /usr/bin/bannermenu
 chmod +x /usr/bin/menu-update-script-vps.sh
 chmod 777 /usr/bin/vpnmon
 cd
-wget $source/debian7/instalshc.sh
+wget https://raw.githubusercontent.com/ruzaidie/cinta/debian7/instalshc.sh
 chmod +x /root/instalshc.sh
 /root/instalshc.sh
 rm /root/instalshc.sh
@@ -380,7 +383,7 @@ chmod 0600 /swapfile
 cd
 
 #ovpn
-wget -O ovpn.sh $source/debian7/installovpn.sh
+wget -O ovpn.sh https://raw.githubusercontent.com/ruzaidie/cinta/debian7/debian7/installovpn.sh
 chmod +x ovpn.sh
 ./ovpn.sh
 rm ./ovpn.sh
