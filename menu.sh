@@ -57,6 +57,7 @@ date +"                    %A, %d-%m-%Y" | lolcat
 date +"                            %H:%M:%S %Z" | lolcat
 echo ""
 echo ""
+echo -e "\e[36m                      SIMPLE MENU 
 PS3='Silahkan ketik nomor pilihan anda lalu tekan ENTER: '
 options=("Buat User SSH/OVPN" "Buat User SSH/OVPN Trial" "Perbarui User" "Ganti Password User SSH/OVPN" "Semua User Dan Tanggal Kadaluarsa" "Hapus User" "Buat User PPTP VPN" "Monitoring User Dan Tendang" "Monitor User Login" "Daftar User Aktif" "Daftar User Kadaluarsa" "Disable User Kadaluarsa" "Hapus User Kadaluarsa" "Banned User" "Unbanned User" "Penggunaan Ram" "Speedtest" "Benchmark" "Manual Kill Multi Login" "(ON) Auto Kill Multi Login" "(OFF) Auto Kill Multi Login" "Ganti Password VPS" "Bersihkan Cache Ram Manual" "Edit Banner Login" "Edit Banner Menu" "Lihat Lokasi User" "Restart Webmin" "Restart Server VPS" "Restart Dropbear" "Restart OpenSSH" "Restart Squid3" "Restart OpenVPN" "Ganti Port OpenSSH" "Ganti Port Dropbear" "Ganti Port Squid3" "Ganti Port OpenVPN" "Update Script VPS" "Carding" "Quit")
 select opt in "${options[@]}"
