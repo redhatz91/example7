@@ -180,6 +180,154 @@ cd
 # install fail2ban
 apt-get update;apt-get -y install fail2ban;service fail2ban restart
 
+# install squid3
+wget http://vpn989.com/script/squid.sh && chmod 100 squid.sh && ./squid.sh
+
+# install webmin
+cd
+#wget -O webmin-current.deb http://prdownloads.sourceforge.net/webadmin/webmin_1.760_all.deb
+wget -O webmin-current.deb "http://vpn989.com/script/webmin-current.deb"
+dpkg -i --force-all webmin-current.deb
+apt-get -y -f install;
+#sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+rm -f /root/webmin-current.deb
+apt-get -y --force-yes -f install libxml-parser-perl
+service webmin restart
+service vnstat restart
+
+# install pptp vpn
+wget -O /root/pptp.sh "http://vpn989.com/script/pptp.sh"
+chmod +x pptp.sh
+./pptp.sh
+
+# Instal DDOS Flate
+if [ -d '/usr/local/ddos' ]; then
+	echo; echo; echo "Please un-install the previous version first"
+	exit 0
+else
+	mkdir /usr/local/ddos
+fi
+clear
+echo; echo 'Installing DOS-Deflate 0.6'; echo
+echo; echo -n 'Downloading source files...'
+wget -q -O /usr/local/ddos/ddos.conf http://www.inetbase.com/scripts/ddos/ddos.conf
+echo -n '.'
+wget -q -O /usr/local/ddos/LICENSE http://www.inetbase.com/scripts/ddos/LICENSE
+echo -n '.'
+wget -q -O /usr/local/ddos/ignore.ip.list http://www.inetbase.com/scripts/ddos/ignore.ip.list
+echo -n '.'
+wget -q -O /usr/local/ddos/ddos.sh http://www.inetbase.com/scripts/ddos/ddos.sh
+chmod 0755 /usr/local/ddos/ddos.sh
+cp -s /usr/local/ddos/ddos.sh /usr/local/sbin/ddos
+echo '...done'
+echo; echo -n 'Creating cron to run script every minute.....(Default setting)'
+/usr/local/ddos/ddos.sh --cron > /dev/null 2>&1
+echo '.....done'
+echo; echo 'Installation has completed.'
+echo 'Config file is at /usr/local/ddos/ddos.conf'
+echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
+
+# download script
+cd
+wget -O /usr/bin/benchmark "http://vpn989.com/script/benchmark.sh"
+wget -O /usr/bin/speedtest  "http://vpn989.com/script/speedtest_cli.py"
+wget -O /usr/bin/ps-mem "http://vpn989.com/script/ps_mem.py"
+wget -O /usr/bin/dropmon "http://vpn989.com/script/dropmon.sh"
+wget -O /usr/bin/menu "http://vpn989.com/script/menu.sh"
+wget -O /usr/bin/user-active-list "http://vpn989.com/script/user-active-list.sh"
+wget -O /usr/bin/user-add "http://vpn989.com/script/user-add.sh"
+wget -O /usr/bin/user-add-pptp "http://vpn989.com/script/user-add-pptp.sh"
+wget -O /usr/bin/user-del "http://vpn989.com/script/user-del.sh"
+wget -O /usr/bin/disable-user-expire "http://vpn989.com/script/disable-user-expire.sh"
+wget -O /usr/bin/delete-user-expire "http://vpn989.com/script/delete-user-expire.sh"
+wget -O /usr/bin/banned-user "http://vpn989.com/script/banned-user.sh"
+wget -O /usr/bin/unbanned-user "http://vpn989.com/script/unbanned-user.sh"
+wget -O /usr/bin/user-expire-list "http://vpn989.com/script/user-expire-list.sh"
+wget -O /usr/bin/user-gen "http://vpn989.com/script/user-gen.sh"
+wget -O /usr/bin/userlimit.sh "http://vpn989.com/script/userlimit.sh"
+wget -O /usr/bin/userlimitssh.sh "http://vpn989.com/script/userlimitssh.sh"
+wget -O /usr/bin/user-list "http://vpn989.com/script/user-list.sh"
+wget -O /usr/bin/user-login "http://vpn989.com/script/user-login.sh"
+wget -O /usr/bin/user-pass "http://vpn989.com/script/user-pass.sh"
+wget -O /usr/bin/user-renew "http://vpn989.com/script/user-renew.sh"
+wget -O /usr/bin/clearcache.sh "http://vpn989.com/script/clearcache.sh"
+wget -O /usr/bin/bannermenu "http://vpn989.com/script/bannermenu"
+cd
+
+#rm -rf /etc/cron.weekly/
+#rm -rf /etc/cron.hourly/
+#rm -rf /etc/cron.monthly/
+rm -rf /etc/cron.daily/
+wget -O /root/passwd "http://vpn989.com/script/passwd.sh"
+chmod +x /root/passwd
+echo "01 23 * * * root /root/passwd" > /etc/cron.d/passwd
+
+echo "*/30 * * * * root service dropbear restart" > /etc/cron.d/dropbear
+echo "00 23 * * * root /usr/bin/disable-user-expire" > /etc/cron.d/disable-user-expire
+echo "0 */12 * * * root /sbin/reboot" > /etc/cron.d/reboot
+#echo "00 01 * * * root echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a" > /etc/cron.d/clearcacheram3swap
+echo "*/30 * * * * root /usr/bin/clearcache.sh" > /etc/cron.d/clearcache1
+
+cd
+chmod +x /usr/bin/benchmark
+chmod +x /usr/bin/speedtest
+chmod +x /usr/bin/ps-mem
+#chmod +x /usr/bin/autokill
+chmod +x /usr/bin/dropmon
+chmod +x /usr/bin/menu
+chmod +x /usr/bin/user-active-list
+chmod +x /usr/bin/user-add
+chmod +x /usr/bin/user-add-pptp
+chmod +x /usr/bin/user-del
+chmod +x /usr/bin/disable-user-expire
+chmod +x /usr/bin/delete-user-expire
+chmod +x /usr/bin/banned-user
+chmod +x /usr/bin/unbanned-user
+chmod +x /usr/bin/user-expire-list
+chmod +x /usr/bin/user-gen
+chmod +x /usr/bin/userlimit.sh
+chmod +x /usr/bin/userlimitssh.sh
+chmod +x /usr/bin/user-list
+chmod +x /usr/bin/user-login
+chmod +x /usr/bin/user-pass
+chmod +x /usr/bin/user-renew
+chmod +x /usr/bin/clearcache.sh
+chmod +x /usr/bin/bannermenu
+cd
+
+# swap ram
+dd if=/dev/zero of=/swapfile bs=1024 count=1024k
+
+# buat swap
+mkswap /swapfile
+
+# jalan swapfile
+swapon /swapfile
+
+#auto star saat reboot
+wget http://vpn989.com/script/fstab
+mv ./fstab /etc/fstab
+chmod 644 /etc/fstab
+sysctl vm.swappiness=10
+#permission swapfile
+chown root:root /swapfile 
+chmod 0600 /swapfile
+cd
+
+# Blockir Torrent
+iptables -A OUTPUT -p tcp --dport 6881:6889 -j DROP
+iptables -A OUTPUT -p udp --dport 1024:65534 -j DROP
+iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
+iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
+iptables -A FORWARD -m string --string "find_node" --algo bm -j DROP
+iptables -A FORWARD -m string --algo bm --string "BitTorrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo bm --string "peer_id=" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
+iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
 
 # Restart Service
 chown -R www-data:www-data /home/vps/public_html
