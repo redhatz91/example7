@@ -322,7 +322,7 @@ service fail2ban restart
 
 # info
 clear
-echo "                  System Created by Vpn989"
+echo "                  System Created by Apache07"
 echo "          ==========***********==========="
 echo "==========================================================="
 echo "Service :" | tee -a log-install.txt
@@ -330,7 +330,7 @@ echo "---------" | tee -a log-install.txt
 echo "OpenSSH  : 22, 143" | tee -a log-install.txt
 echo "Dropbear : 443, 80" | tee -a log-install.txt
 echo "Squid3   : 8080 limit to IP $MYIP" | tee -a log-install.txt
-#echo "OpenVPN  : TCP 1194 (client config : http://$MYIP:989/client.ovpn)" | tee -a log-install.txt
+#echo "OpenVPN  : TCP 1194 (client config : http://$MYIP/client.ovpn)" | tee -a log-install.txt
 echo "badvpn   : badvpn-udpgw port 7300" | tee -a log-install.txt
 echo "PPTP VPN : TCP 1723" | tee -a log-install.txt
 echo "nginx    : 989" | tee -a log-install.txt
@@ -346,13 +346,13 @@ echo "" | tee -a log-install.txt
 echo "Fitur lain :" | tee -a log-install.txt
 echo "------------" | tee -a log-install.txt
 echo "Webmin            : http://$MYIP:10000/" | tee -a log-install.txt
-echo "vnstat            : http://$MYIP:989/vnstat/ [Cek Bandwith]" | tee -a log-install.txt
+echo "vnstat            : http://$MYIP/vnstat/ [Cek Bandwith]" | tee -a log-install.txt
 echo "Timezone : Asia/Malaysia"
 echo "Fail2Ban : [on]"
 echo "IPv6     : [off]"
 echo "Ddos Protect : [on]"
 echo "Torrent Protect [on]"
-echo "Website  : http://vpn989.com"
+echo "Website  : http://Apache07.com"
 echo ""
 echo "                        Sila Reboot VPS Anda !"
 echo "==========================================================="
