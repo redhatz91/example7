@@ -18,7 +18,7 @@ MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\
 if [ "$MYIP" = "" ]; then
 	MYIP=$(wget -qO- ipv4.icanhazip.com)
 fi
-MYIP2="s/xxxxxxxxx/$MYIP/g";
+MYIP2="s/188.166.232.148/$MYIP/g";
 ether=`ifconfig | cut -c 1-8 | sort | uniq -u | grep venet0 | grep -v venet0:`
 if [[ $ether = "" ]]; then
         ether=eth0
@@ -47,43 +47,6 @@ cd
 #exit
 #fi
 
-# check registered ip
-wget -q -O IP $source/example7/IP.txt
-if ! grep -w -q $MYIP IP; then
-	echo "Maaf, hanya IP yang terdaftar yang bisa menggunakan script ini!"
-        echo "     
-                       
-               =============== OS-32 & 64-bit ================
-               ♦                                             ♦
-               ♦   AUTOSCRIPT CREATED BY YUSUF ARDIANSYAH    ♦
-	       ♦                     &                       ♦
-	       ♦               DENY SISWANTO                 ♦
-               ♦       -----------About Us------------       ♦ 
-               ♦            Tel : +6283843700098             ♦
-               ♦         { Sms/whatsapp/telegram }           ♦ 
-               ♦       http://facebook.com/t34mh4ck3r        ♦    
-               ♦   http://www.facebook.com/elang.overdosis   ♦
-               ♦                                             ♦
-               =============== OS-32 & 64-bit ================
-               
-                 Please make payment before use auto script
-                 ..........................................
-                 .        Price: Rp.20.000 = 1IP          .
-                 .          *****************             .
-                 .           Maybank Account              .
-                 .           =================            .
-                 .          No   : Hubungi admin          .
-                 .          Name : Yusuf Ardiansyah       .
-                 ..........................................   
-                          Thank You For Choice Us"
-
-	echo "        Hubungi: editor ( elang overdosis atau deeniedoank)"
-	
-	rm /root/IP
-	rm cinta7.sh
-	rm -f /root/IP
-	exit
-fi
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
