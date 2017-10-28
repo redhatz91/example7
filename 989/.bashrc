@@ -121,12 +121,12 @@ clear
 echo "" | lolcat
 echo "" | lolcat
 echo "" | lolcat
-echo "      --[         SELAMAT DATANG  DI Apache07           ]--"| boxes -d boy | lolcat
+echo "      --[         SELAMAT DATANG  DI inject69                ]--"| boxes -d boy | lolcat
 echo "         ====================================================="| lolcat
-echo "         #           WhatsApp     : Apache07                #"| lolcat
-echo "         #           Telegram     : @Apache07               #"| lolcat
-echo "         #           GROUP        : T.me/Apache07           #"| lolcat
-echo "         #           Channel      : T.me/Apache07           #"| lolcat
+echo "         #           WhatsApp     : -                       #"| lolcat
+echo "         #           Telegram     : @inject69               #"| lolcat
+echo "         #           GROUP        : T.me/inject69           #"| lolcat
+echo "         #           Channel      : T.me/inject69           #"| lolcat
 echo "         #--------------------------------------------------#"| lolcat
 echo "         #      Sila taip [menu] and ENTER untuk options    #"| lolcat
 echo "         #--------------------------------------------------#"| lolcat
